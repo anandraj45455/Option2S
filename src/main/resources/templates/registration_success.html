@@ -2,7 +2,7 @@
 <html lang="en" xmlns:th="http://www.thymeleaf.org">
 <head>
     <meta charset="UTF-8">
-    <title>Option2S</title>
+    <title>Registration Success - Option2S</title>
     <link rel="icon" type="image/png" href="images/o2s_logo.png">
 
     <link href="webjars/bootstrap/5.0.0/css/bootstrap.min.css" rel="stylesheet">
@@ -17,12 +17,8 @@
 <body>
     <div class="container text-center">
         <div>
-            <h1>Welcome to <span th:text="${appName}"></span>!</h1>
-        </div>
-        <div>
-            <h3><a th:href="@{/users}">List all users</a></h3>
-            <h3><a th:href="@{/login}">Login</a></h3>
-            <h3><a th:href="@{/register}">Register</a></h3>
+            <h3>You have signed up successfully</h3>
+            <h3><a th:href="@{/login}">Click here to login</a></h3>
         </div>
     </div>
 </body>

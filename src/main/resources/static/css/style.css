@@ -1,3 +1,11 @@
 body {
     font-family: serif;
 }
+
+/** theme blue **/
+
+.theme-blue {
+    --bs-table-bg: #0c60b5;
+    color: #ffffff;
+    border-color: #124a73;
+}
