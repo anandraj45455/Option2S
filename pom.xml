@@ -87,6 +87,14 @@
 			<artifactId>webjars-locator-core</artifactId>
 		</dependency>
 
+		<dependency>
+			<groupId>com.zerodhatech.kiteconnect</groupId>
+			<artifactId>kiteconnect</artifactId>
+			<version>3.1.14</version>
+			<scope>system</scope>
+			<systemPath>${basedir}/lib/kiteconnect.jar</systemPath>
+		</dependency>
+
 	</dependencies>
 
 	<build>
@@ -101,6 +109,7 @@
 							<artifactId>lombok</artifactId>
 						</exclude>
 					</excludes>
+					<includeSystemScope>true</includeSystemScope>
 				</configuration>
 			</plugin>
 		</plugins>

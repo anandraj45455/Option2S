@@ -60,6 +60,7 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/**/*.js",
                         "/actuator/**")
                 .permitAll()
+                .antMatchers("/api/**").authenticated()
                 .antMatchers("/users").authenticated()
                 .anyRequest().permitAll()
                 .and()
