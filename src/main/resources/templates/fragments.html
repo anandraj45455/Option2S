@@ -18,8 +18,9 @@
 </head>
 <body>
 
-    <header th:fragment="header_fr" class="header body-pd" id="header">
+    <header th:fragment="header_fr(activePage)" class="header body-pd" id="header">
         <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
+        <h3><span th:text="${activePage}"></span></h3>
         <div class="header_img"> <img src="images/o2s_logo_small.png" alt=""> </div>
     </header>
 
@@ -55,9 +56,17 @@
                         <i class='bx bx-bar-chart-alt-2 nav_icon'></i>
                         <span class="nav_name">P/L</span>
                     </a>
+                    <a th:href="@{/users}" th:class="${#strings.equals(activeLink, 'Users')} ? 'nav_link active' : 'nav_link'">
+                        <i class='bx bx-bar-chart-alt-2 nav_icon'></i>
+                        <span class="nav_name">Users</span>
+                    </a>
+                    <a th:href="@{/register}" th:class="${#strings.equals(activeLink, 'Register')} ? 'nav_link active' : 'nav_link'">
+                        <i class='bx bx-bar-chart-alt-2 nav_icon'></i>
+                        <span class="nav_name">Register</span>
+                    </a>
                 </div>
             </div>
-            <a href="#" class="nav_link">
+            <a href="/logout" class="nav_link">
                 <i class='bx bx-log-out nav_icon'></i>
                 <span class="nav_name">SignOut</span>
             </a>

@@ -60,13 +60,13 @@ public class WebSecurityConfig extends WebSecurityConfigurerAdapter {
                         "/**/*.js",
                         "/actuator/**")
                 .permitAll()
+                .antMatchers("/home").authenticated()
                 .antMatchers("/api/**").authenticated()
-                .antMatchers("/users").authenticated()
                 .anyRequest().permitAll()
                 .and()
                 .formLogin()
                     .usernameParameter("email")
-                    .defaultSuccessUrl("/users")
+                    .defaultSuccessUrl("/")
                     .permitAll()
                 .and()
                 .logout().logoutSuccessUrl("/").permitAll();

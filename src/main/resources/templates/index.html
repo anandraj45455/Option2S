@@ -3,18 +3,11 @@
 <head th:replace="fragments::html_head_fr"></head>
 <body id="body-pd" class="body-pd">
 
-    <div th:replace="fragments::header_fr"></div>
+    <div th:replace="fragments::header_fr('Home')"></div>
     <div th:replace="fragments::menu_fr('Home')"></div>
 
-    <div id="home" class="height-100 bg-light">
-        <div>
-            <h1>Welcome to <span th:text="${appName}"></span>!</h1>
-        </div>
-        <div>
-            <h3><a th:href="@{/users}">List all users</a></h3>
-            <h3><a th:href="@{/login}">Login</a></h3>
-            <h3><a th:href="@{/register}">Register</a></h3>
-        </div>
+    <div id="home" class="content-area">
+        <h1>Welcome to <span th:text="${appName}"></span>!</h1>
     </div>
 
     <div th:replace="fragments::footer_fr"></div>
