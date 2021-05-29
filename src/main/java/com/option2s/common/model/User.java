@@ -11,7 +11,7 @@ import javax.persistence.*;
 @Getter
 @Setter
 @NoArgsConstructor
-public class User {
+public class User extends AuditModel {
 
     @Id
     @GeneratedValue(strategy= GenerationType.SEQUENCE, generator = "user_sequence")
