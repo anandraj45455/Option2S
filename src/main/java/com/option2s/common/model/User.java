@@ -1,6 +1,5 @@
-package com.option2s.model;
+package com.option2s.common.model;
 
-import lombok.AllArgsConstructor;
 import lombok.Getter;
 import lombok.NoArgsConstructor;
 import lombok.Setter;

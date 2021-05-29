@@ -1,4 +1,4 @@
-package com.option2s.utils;
+package com.option2s.common.utils;
 
 public class Constants {
 

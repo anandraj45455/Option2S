@@ -1,6 +1,6 @@
 package com.option2s.common.security;
 
-import com.option2s.model.User;
+import com.option2s.common.model.User;
 import org.springframework.security.core.GrantedAuthority;
 import org.springframework.security.core.userdetails.UserDetails;
 

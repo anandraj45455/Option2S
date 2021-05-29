@@ -1,8 +1,8 @@
-package com.option2s.controller;
+package com.option2s.common.controller;
 
-import com.option2s.model.User;
-import com.option2s.repository.UserRepository;
-import com.option2s.utils.PasswordEncoderHelper;
+import com.option2s.common.model.User;
+import com.option2s.common.repository.UserRepository;
+import com.option2s.common.utils.PasswordEncoderHelper;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Controller;

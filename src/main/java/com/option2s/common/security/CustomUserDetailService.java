@@ -1,7 +1,7 @@
 package com.option2s.common.security;
 
-import com.option2s.model.User;
-import com.option2s.repository.UserRepository;
+import com.option2s.common.model.User;
+import com.option2s.common.repository.UserRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.security.core.userdetails.UserDetails;
 import org.springframework.security.core.userdetails.UserDetailsService;

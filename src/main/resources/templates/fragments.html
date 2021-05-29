@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html lang="en" xmlns:th="http://www.thymeleaf.org">
+<head th:fragment="html_head_fr">
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link rel="icon" type="image/png" href="images/o2s_logo.png">
+    <title>Option2S</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" rel="stylesheet">
+    <link href="webjars/bootstrap/5.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/style.css" rel="stylesheet">
+
+
+    <script src="webjars/jquery/3.6.0/jquery.min.js"></script>
+    <script src="webjars/bootstrap/5.0.0/js/bootstrap.min.js"></script>
+
+    <script type="text/javascript" src="javascript/app.js"></script>
+</head>
+<body>
+
+    <header th:fragment="header_fr" class="header body-pd" id="header">
+        <div class="header_toggle"> <i class='bx bx-menu' id="header-toggle"></i> </div>
+        <div class="header_img"> <img src="images/o2s_logo_small.png" alt=""> </div>
+    </header>
+
+    <div th:fragment="menu_fr(activeLink)" class="l-navbar show" id="nav-bar">
+        <nav class="nav">
+            <div>
+                <a href="#" class="nav_logo">
+                    <i class='bx bx-layer nav_logo-icon'></i>
+                    <span class="nav_logo-name">Option2S</span>
+                </a>
+
+                <div class="nav_list">
+                    <a th:href="@{/}" th:class="${#strings.equals(activeLink, 'Home')} ? 'nav_link active' : 'nav_link'">
+                        <i class='bx bx-grid-alt nav_icon'></i> <span class="nav_name">Home</span>
+                    </a>
+                    <a th:href="@{/nifty}" th:class="${#strings.equals(activeLink, 'Nifty')} ? 'nav_link active' : 'nav_link'">
+                        <i class='bx bx-user nav_icon'></i>
+                        <span class="nav_name">Nifty</span>
+                    </a>
+                    <a th:href="@{/bank-nifty}" th:class="${#strings.equals(activeLink, 'Bank Nifty')} ? 'nav_link active' : 'nav_link'">
+                        <i class='bx bx-message-square-detail nav_icon'></i>
+                        <span class="nav_name">Bank Nifty</span>
+                    </a>
+                    <a th:href="@{/stocks}" th:class="${#strings.equals(activeLink, 'Stocks')} ? 'nav_link active' : 'nav_link'">
+                        <i class='bx bx-bookmark nav_icon'></i>
+                        <span class="nav_name">Stocks</span>
+                    </a>
+                    <a th:href="@{/orders}" th:class="${#strings.equals(activeLink, 'Orders')} ? 'nav_link active' : 'nav_link'">
+                        <i class='bx bx-folder nav_icon'></i>
+                        <span class="nav_name">Orders</span>
+                    </a>
+                    <a th:href="@{/profit-loss}" th:class="${#strings.equals(activeLink, 'P/L')} ? 'nav_link active' : 'nav_link'">
+                        <i class='bx bx-bar-chart-alt-2 nav_icon'></i>
+                        <span class="nav_name">P/L</span>
+                    </a>
+                </div>
+            </div>
+            <a href="#" class="nav_link">
+                <i class='bx bx-log-out nav_icon'></i>
+                <span class="nav_name">SignOut</span>
+            </a>
+        </nav>
+    </div>
+
+    <div th:fragment="footer_fr" id="footer" class="text-center">
+        <p>Option2S Admin Control Panel - Copyright &copy; Option2S</p>
+
+    </div>
+
+</body>
+</html>

@@ -1,6 +1,6 @@
-package com.option2s.repository;
+package com.option2s.common.repository;
 
-import com.option2s.model.User;
+import com.option2s.common.model.User;
 import org.springframework.data.jpa.repository.JpaRepository;
 import org.springframework.data.jpa.repository.Query;
 import org.springframework.stereotype.Repository;
