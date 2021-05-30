@@ -1,11 +1,13 @@
 package com.option2s.zerodha.service;
 
+import com.option2s.common.utils.AppHelper;
 import com.option2s.zerodha.model.ZerodhaKiteToken;
 import com.option2s.zerodha.repository.ZerodhaKiteTokenRepository;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.Date;
+import java.util.List;
 
 @Service
 public class ZerodhaService {
@@ -17,17 +19,23 @@ public class ZerodhaService {
         return zerodhaKiteTokenRepository.save(zerodhaKiteToken);
     }
 
-    public String getLatestRequestToken() {
-        ZerodhaKiteToken zerodhaKiteToken = zerodhaKiteTokenRepository.findLatest();
-        return zerodhaKiteToken.getRequestTokenValue();
+    public ZerodhaKiteToken getLatestRequestToken() {
+        ZerodhaKiteToken zerodhaKiteToken = zerodhaKiteTokenRepository.findLatestRequestToken();
+        return zerodhaKiteToken;
     }
 
-    public ZerodhaKiteToken getZerodhaKiteToken() {
-        return zerodhaKiteTokenRepository.findLatest();
-    }
+    public ZerodhaKiteToken findTokensByCurrentDate() {
+        List<ZerodhaKiteToken> tokens = zerodhaKiteTokenRepository.findTokensByCurrentDate();
+        ZerodhaKiteToken zerodhaKiteToken = null;
 
-    public ZerodhaKiteToken findTokensByDate(Date date) {
-        return zerodhaKiteTokenRepository.findLatest();
+        for (ZerodhaKiteToken zerodhaKiteToken1 : tokens) {
+            if (AppHelper.isPresent(zerodhaKiteToken1.getAccessTokenValue()) &&
+                AppHelper.isPresent(zerodhaKiteToken1.getPublicTokenValue())) {
+                zerodhaKiteToken = zerodhaKiteToken1;
+                break;
+            }
+        }
+        return zerodhaKiteToken;
     }
 
 }

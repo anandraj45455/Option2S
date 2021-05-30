@@ -1,5 +1,6 @@
 package com.option2s.zerodha.service;
 
+import com.option2s.common.utils.AppHelper;
 import com.option2s.zerodha.model.ZerodhaKiteToken;
 import com.zerodhatech.kiteconnect.KiteConnect;
 import com.zerodhatech.kiteconnect.kitehttp.SessionExpiryHook;
@@ -9,9 +10,6 @@ import org.json.JSONObject;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
-
-import java.io.IOException;
-import java.util.Date;
 
 @Service
 public class ZerodhaKiteService {
@@ -35,7 +33,8 @@ public class ZerodhaKiteService {
     public KiteConnect kiteConnect() {
 
         if (kiteConnect != null &&
-                !kiteConnect.getAccessToken().isEmpty() && !kiteConnect.getPublicToken().isEmpty()) {
+                AppHelper.isPresent(kiteConnect.getAccessToken()) &&
+                AppHelper.isPresent(kiteConnect.getPublicToken())) {
             kiteConnectStatus = "KiteConnect Token exists: " + kiteConnect.getPublicToken();
             System.out.println(kiteConnectStatus);
 
@@ -58,35 +57,44 @@ public class ZerodhaKiteService {
                     kiteConnectStatus = "KiteConnect Token is invalid or has expired. " +
                             "Trigger this url " + loginUrl + " to generate request token";
                     System.out.println(kiteConnectStatus);
+                    kiteConnect = null;
 
                 }
             });
 
-            ZerodhaKiteToken zerodhaKiteToken = zerodhaService.findTokensByDate(new Date());
+            ZerodhaKiteToken zerodhaKiteToken = zerodhaService.findTokensByCurrentDate();
 
-            if (zerodhaKiteToken.getAccessTokenValue() != null && zerodhaKiteToken.getPublicTokenValue() != null) {
+            if (zerodhaKiteToken != null && zerodhaKiteToken.getAccessTokenValue() != null &&
+                    zerodhaKiteToken.getPublicTokenValue() != null) {
                 kiteConnect.setAccessToken(zerodhaKiteToken.getAccessTokenValue());
                 kiteConnect.setPublicToken(zerodhaKiteToken.getPublicTokenValue());
                 kiteConnectStatus = "KiteConnect Token exists: " + zerodhaKiteToken.getPublicTokenValue();
             } else {
                 kiteConnectStatus = "KiteConnect token doesn't exists. Generating new tokens";
                 System.out.println(kiteConnectStatus);
-                User user =  kiteConnect.generateSession(zerodhaService.getLatestRequestToken(), kiteApiSecret);
-                kiteConnect.setAccessToken(user.accessToken);
-                kiteConnect.setPublicToken(user.publicToken);
 
-                zerodhaKiteToken.setAccessTokenValue(user.accessToken);
-                zerodhaKiteToken.setPublicTokenValue(user.publicToken);
-                zerodhaService.save(zerodhaKiteToken);
-                kiteConnectStatus = "KiteConnect token generation is success: " + user.publicToken;
+                zerodhaKiteToken = zerodhaService.getLatestRequestToken();
+
+                if (zerodhaKiteToken != null) {
+                    User user =  kiteConnect.generateSession(zerodhaKiteToken.getRequestTokenValue(), kiteApiSecret);
+                    String newAccessToken = user.accessToken;
+                    String newPublicToken = user.publicToken;
+                    kiteConnect.setAccessToken(newAccessToken);
+                    kiteConnect.setPublicToken(newPublicToken);
+
+                    zerodhaKiteToken.setAccessTokenValue(newAccessToken);
+                    zerodhaKiteToken.setPublicTokenValue(newPublicToken);
+                    zerodhaService.save(zerodhaKiteToken);
+                    kiteConnectStatus = "KiteConnect token generation is success: " + user.publicToken;
+                } else {
+                    kiteConnectStatus = "KiteConnect request token is null. " +
+                            "Trigger this url " + loginUrl + " to generate request token";
+                    kiteConnect = null;
+                }
             }
             System.out.println(kiteConnectStatus);
 
-        } catch (KiteException e) {
-            kiteConnect = null;
-            kiteConnectStatus = "ERROR: " + kiteConnectStatus + ": " + e.getMessage();
-            e.printStackTrace();
-        } catch (Exception e) {
+        } catch (KiteException | Exception e) {
             kiteConnect = null;
             kiteConnectStatus = "ERROR: " + kiteConnectStatus + ": " + e.getMessage();
             e.printStackTrace();
