@@ -8,12 +8,14 @@
 
     <link href="https://cdn.jsdelivr.net/npm/boxicons@latest/css/boxicons.min.css" rel="stylesheet">
     <link href="webjars/bootstrap/5.0.0/css/bootstrap.min.css" rel="stylesheet">
+    <link href="css/theme.css" rel="stylesheet">
     <link href="css/style.css" rel="stylesheet">
 
 
     <script src="webjars/jquery/3.6.0/jquery.min.js"></script>
     <script src="webjars/bootstrap/5.0.0/js/bootstrap.min.js"></script>
 
+    <script type="text/javascript" src="javascript/theme.js"></script>
     <script type="text/javascript" src="javascript/app.js"></script>
 </head>
 <body>
@@ -24,8 +26,8 @@
         <div class="header_img"> <img src="images/o2s_logo_small.png" alt=""> </div>
     </header>
 
-    <div th:fragment="menu_fr(activeLink)" class="l-navbar show" id="nav-bar">
-        <nav class="nav">
+    <div th:fragment="menu_fr(activeLink)" class="l-navbar show" id="theme-nav-bar">
+        <nav class="menu-nav">
             <div>
                 <a href="#" class="nav_logo">
                     <i class='bx bx-layer nav_logo-icon'></i>
@@ -60,9 +62,9 @@
                         <i class='bx bx-bar-chart-alt-2 nav_icon'></i>
                         <span class="nav_name">Users</span>
                     </a>
-                    <a th:href="@{/register}" th:class="${#strings.equals(activeLink, 'Register')} ? 'nav_link active' : 'nav_link'">
+                    <a th:href="@{/settings}" th:class="${#strings.equals(activeLink, 'Settings')} ? 'nav_link active' : 'nav_link'">
                         <i class='bx bx-bar-chart-alt-2 nav_icon'></i>
-                        <span class="nav_name">Register</span>
+                        <span class="nav_name">Settings</span>
                     </a>
                 </div>
             </div>

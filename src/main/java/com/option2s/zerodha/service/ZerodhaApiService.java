@@ -5,7 +5,7 @@ import org.springframework.beans.factory.annotation.Value;
 import org.springframework.stereotype.Service;
 
 @Service
-public class ZerodhaService {
+public class ZerodhaApiService {
 
     @Value("${spring.kite.api-key}")
     private String kiteApiKey;
@@ -17,7 +17,7 @@ public class ZerodhaService {
     private String kiteUserId;
 
     public static void main(String[] args) throws Exception {
-        new ZerodhaService().connectKite();
+        new ZerodhaApiService().connectKite();
     }
 
     public void connectKite() {
