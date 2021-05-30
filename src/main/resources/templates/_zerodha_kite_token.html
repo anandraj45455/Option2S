@@ -6,7 +6,7 @@
     <div id="refresh_token">
 
         <div id="refresh_token_form" class="col-8">
-            <form th:action="@{/save_refresh_token}" method="post" th:object="${refreshToken}">
+            <form th:action="@{/save_token}" method="post" th:object="${zerodhaKiteToken}">
                 <div class="m-3">
                     <div class="form-group row">
                         <label class="col-form-label col-4">User Id</label>
@@ -42,11 +42,11 @@
                 </tr>
                 </thead>
                 <tbody>
-                <tr th:each="refreshToken : ${refreshTokens}">
-                    <td th:text="${refreshToken.id}">ID</td>
-                    <td th:text="${refreshToken.date}">Date</td>
-                    <td th:text="${refreshToken.userId}">User Id</td>
-                    <td th:text="${refreshToken.refreshTokenValue}">Refresh Token</td>
+                <tr th:each="token : ${zerodhaKiteTokens}">
+                    <td th:text="${token.id}">ID</td>
+                    <td th:text="${token.date}">Date</td>
+                    <td th:text="${token.userId}">User Id</td>
+                    <td th:text="${token.refreshTokenValue}">Refresh Token</td>
                 </tr>
                 </tbody>
             </table>

@@ -1,7 +1,7 @@
 package com.option2s.zerodha.controller;
 
-import com.option2s.zerodha.model.RefreshToken;
-import com.option2s.zerodha.repository.RefreshTokenRepository;
+import com.option2s.zerodha.model.ZerodhaKiteToken;
+import com.option2s.zerodha.repository.ZerodhaKiteTokenRepository;
 import com.option2s.zerodha.service.ZerodhaApiService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
@@ -21,7 +21,7 @@ public class ZerodhaController {
     private ZerodhaApiService zerodhaApiService;
 
     @Autowired
-    private RefreshTokenRepository refreshTokenRepository;
+    private ZerodhaKiteTokenRepository zerodhaKiteTokenRepository;
 
     @GetMapping("/settings")
     public String main(Model model) {
@@ -31,12 +31,12 @@ public class ZerodhaController {
     @GetMapping("{tab}")
     public String tab(Model model, @PathVariable String tab) {
 
-        if (tab.equalsIgnoreCase("refresh_token")) {
-            List<RefreshToken> refreshTokens = refreshTokenRepository.findAll();
-            model.addAttribute("refreshTokens", refreshTokens);
-            model.addAttribute("refreshToken", new RefreshToken());
+        if (tab.equalsIgnoreCase("zerodha_kite_token")) {
+            List<ZerodhaKiteToken> zerodhaKiteTokens = zerodhaKiteTokenRepository.findAll();
+            model.addAttribute("zerodhaKiteTokens", zerodhaKiteTokens);
+            model.addAttribute("zerodhaKiteToken", new ZerodhaKiteToken());
 
-            return "_refresh_token";
+            return "_zerodha_kite_token";
         } else if (tab.equalsIgnoreCase("tab2")) {
 
             return "_tab2";
@@ -49,10 +49,10 @@ public class ZerodhaController {
 
     }
 
-    @PostMapping("/save_refresh_token")
-    public RedirectView saveRefreshToken(RefreshToken refreshToken) {
-        refreshToken.setDate(new Date());
-        refreshTokenRepository.save(refreshToken);
+    @PostMapping("/save_token")
+    public RedirectView saveRefreshToken(ZerodhaKiteToken zerodhaKiteToken) {
+        zerodhaKiteToken.setDate(new Date());
+        zerodhaKiteTokenRepository.save(zerodhaKiteToken);
         return new RedirectView("/settings");
     }
 
