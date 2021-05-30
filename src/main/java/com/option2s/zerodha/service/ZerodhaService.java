@@ -13,6 +13,10 @@ public class ZerodhaService {
     @Autowired
     private ZerodhaKiteTokenRepository zerodhaKiteTokenRepository;
 
+    public ZerodhaKiteToken save(ZerodhaKiteToken zerodhaKiteToken) {
+        return zerodhaKiteTokenRepository.save(zerodhaKiteToken);
+    }
+
     public String getLatestRequestToken() {
         ZerodhaKiteToken zerodhaKiteToken = zerodhaKiteTokenRepository.findLatest();
         return zerodhaKiteToken.getRequestTokenValue();
@@ -23,7 +27,6 @@ public class ZerodhaService {
     }
 
     public ZerodhaKiteToken findTokensByDate(Date date) {
-
         return zerodhaKiteTokenRepository.findLatest();
     }
 

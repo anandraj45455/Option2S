@@ -46,7 +46,7 @@ public class ZerodhaController {
     }
 
     @PostMapping("/save_token")
-    public RedirectView saveRefreshToken(ZerodhaKiteToken zerodhaKiteToken) {
+    public RedirectView saveToken(ZerodhaKiteToken zerodhaKiteToken) {
         zerodhaKiteToken.setDate(new Date());
         zerodhaKiteTokenRepository.save(zerodhaKiteToken);
         return new RedirectView("/settings");

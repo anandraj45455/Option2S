@@ -19,7 +19,8 @@ public interface ZerodhaKiteTokenRepository extends JpaRepository<ZerodhaKiteTok
     @Query("SELECT r FROM ZerodhaKiteToken r WHERE r.date=?1 ORDER BY r.date DESC")
     List<ZerodhaKiteToken> findAllByDate(Date date);
 
-    @Query(nativeQuery = true, value = "SELECT * FROM zerodha_kite_tokens WHERE refresh_token_value IS NOT NULL ORDER BY date DESC LIMIT 1")
+    @Query(nativeQuery = true, value = "SELECT * FROM zerodha_kite_tokens WHERE " +
+            "request_token_value IS NOT NULL ORDER BY date DESC LIMIT 1")
     ZerodhaKiteToken findLatest();
 
     ZerodhaKiteToken findFirstByOrderByDateDesc();
