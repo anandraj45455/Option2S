@@ -37,4 +37,10 @@ public class ZerodhaKiteController {
         return response.toString();
     }
 
+    @GetMapping("/kite/test")
+    public String testKiteMethods() {
+        zerodhaKiteService.test();
+        return "";
+    }
+
 }
