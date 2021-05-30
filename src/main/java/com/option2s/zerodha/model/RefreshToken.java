@@ -25,6 +25,6 @@ public class RefreshToken extends AuditModel {
 
     private String userId;
 
-    private String refreshToken;
+    private String refreshTokenValue;
 
 }
