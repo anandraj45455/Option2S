@@ -2,7 +2,6 @@ package com.option2s.zerodha.controller;
 
 import com.option2s.zerodha.model.ZerodhaKiteToken;
 import com.option2s.zerodha.repository.ZerodhaKiteTokenRepository;
-import com.option2s.zerodha.service.ZerodhaApiService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Controller;
 import org.springframework.ui.Model;
@@ -16,9 +15,6 @@ import java.util.List;
 
 @Controller
 public class ZerodhaController {
-
-    @Autowired
-    private ZerodhaApiService zerodhaApiService;
 
     @Autowired
     private ZerodhaKiteTokenRepository zerodhaKiteTokenRepository;

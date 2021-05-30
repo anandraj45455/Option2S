@@ -1,31 +1,30 @@
 package com.option2s.zerodha.service;
 
-import com.zerodhatech.kiteconnect.KiteConnect;
-import org.springframework.beans.factory.annotation.Value;
+import com.option2s.zerodha.model.ZerodhaKiteToken;
+import com.option2s.zerodha.repository.ZerodhaKiteTokenRepository;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
+
+import java.util.Date;
 
 @Service
 public class ZerodhaService {
 
-    @Value("${spring.kite.api-key}")
-    private String kiteApiKey;
+    @Autowired
+    private ZerodhaKiteTokenRepository zerodhaKiteTokenRepository;
 
-    @Value("${spring.kite.api-secret}")
-    private String kiteApiSecret;
-
-    @Value("${spring.kite.user-id}")
-    private String kiteUserId;
-
-    public static void main(String[] args) throws Exception {
-        new ZerodhaService().connectKite();
+    public String getLatestRequestToken() {
+        ZerodhaKiteToken zerodhaKiteToken = zerodhaKiteTokenRepository.findLatest();
+        return zerodhaKiteToken.getRequestTokenValue();
     }
 
-    public void connectKite() {
-        KiteConnect kiteConnect = new KiteConnect(kiteApiKey);
-        kiteConnect.setUserId(kiteUserId);
-        String loginUrl = kiteConnect.getLoginURL();
-        System.out.println(loginUrl);
+    public ZerodhaKiteToken getZerodhaKiteToken() {
+        return zerodhaKiteTokenRepository.findLatest();
+    }
 
+    public ZerodhaKiteToken findTokensByDate(Date date) {
+
+        return zerodhaKiteTokenRepository.findLatest();
     }
 
 }

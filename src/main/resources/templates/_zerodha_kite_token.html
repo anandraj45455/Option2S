@@ -18,7 +18,7 @@
                     <div class="form-group row">
                         <label class="col-form-label col-4">Refresh Token</label>
                         <label class="col-form-label col-8">
-                            <input type="text" class="form-control" th:field="*{refreshTokenValue}" required />
+                            <input type="text" class="form-control" th:field="*{requestTokenValue}" required />
                         </label>
                     </div>
 
@@ -38,7 +38,9 @@
                     <td>ID</td>
                     <td>Date</td>
                     <td>User Id</td>
-                    <td>Refresh Token</td>
+                    <td>Request Token</td>
+                    <td>Access Token</td>
+                    <td>Public Token</td>
                 </tr>
                 </thead>
                 <tbody>
@@ -46,7 +48,9 @@
                     <td th:text="${token.id}">ID</td>
                     <td th:text="${token.date}">Date</td>
                     <td th:text="${token.userId}">User Id</td>
-                    <td th:text="${token.refreshTokenValue}">Refresh Token</td>
+                    <td th:text="${token.requestTokenValue}">Request Token</td>
+                    <td th:text="${token.accessTokenValue}">Access Token</td>
+                    <td th:text="${token.publicTokenValue}">Public Token</td>
                 </tr>
                 </tbody>
             </table>

@@ -25,7 +25,7 @@ public class ZerodhaKiteToken extends AuditModel {
 
     private String userId;
 
-    private String refreshTokenValue;
+    private String requestTokenValue;
 
     @Column(columnDefinition = "TEXT")
     private String accessTokenValue;
